@@ -1,13 +1,9 @@
-﻿// Job1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 using namespace std;
 
 int main()
 {
-    setlocale(LC_ALL, "RU");
     int stringCount, palindromeCount = 0;
     string str;
     cout << "Введите кол-во строк(>0): ";
@@ -26,11 +22,17 @@ int main()
         cout << "Упс... Ошибочка.";
         return 0;
     }
+    string* strLib = new string[stringCount];
     cout << "Введите " << stringCount << " строк(-у):\n";
     for (int i = 0; i < stringCount; i++)
     {
+        cout << i + 1 << " строка: ";
         cin >> str;
-        int strSize = (int)str.size();
+        strLib[i] = str;
+    }
+    for (int i = 0; i < stringCount; i++)
+    {
+        int strSize = (int)strLib[i].size();
         if (strSize % 2 != 0)
         {
             strSize = strSize / 2;
@@ -38,7 +40,7 @@ int main()
             bool palindromeStatus = false;
             while ((palindromeStatus == false) and (j <= strSize))
             {
-                if (str[strSize-j] != str[strSize+j])
+                if (strLib[i][strSize - j] != strLib[i][strSize + j])
                 {
                     palindromeStatus = true;
                 }
@@ -56,15 +58,5 @@ int main()
     cout << "---------------------------------------------------------------------------------------------\n";
     cout << "Итого: (" << palindromeCount << '/' << stringCount << ")\n";
     cout << "---------------------------------------------------------------------------------------------\n";
+    delete[] strLib;
 }
-
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
-
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
