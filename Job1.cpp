@@ -58,5 +58,7 @@ int main() {
     cout << "Итого: (" << palindromeCount << '/' << stringCount << ")\n";
     cout << "--------------------------------------------------------------------"
         "-------------------------\n";
-    delete[] strLib;
-}
+    for (int i = 0; i < stringCount; i++)
+    {
+        delete[] strLib[i];
+    }
